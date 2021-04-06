@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     
 
 <!DOCTYPE html>
@@ -15,21 +15,20 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Petugas') }}</div>
+                    <div class="card-header"><?php echo e(__('Edit Petugas')); ?></div>
     
                     <div class="card-body">
-                        <form action="{{route('updatepetugas', $petugas->id)}}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <a href="{{route('indexpetugas')}}" class="btn btn-success">Kembali</a><br>
-                            {{-- <label for="">ID_Petugas</label>
-                            <input type="text" name="id_petugas"><br> --}}
+                        <form action="<?php echo e(route('updatepetugas', $petugas->id)); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
+                            <a href="<?php echo e(route('indexpetugas')); ?>">Kembali</a><br>
+                            
                             <label for="">Username</label>
-                            <input type="text" name="username" value="{{$petugas->username}}"><br>
+                            <input type="text" name="username" value="<?php echo e($petugas->username); ?>"><br>
                             <label for="">Password</label>
-                            <input type="text" name="password" value="{{$petugas->password}}"><br>
+                            <input type="text" name="password" value="<?php echo e($petugas->password); ?>"><br>
                             <label for="">Nama Petugas</label>
-                            <input type="text" name="nama_petugas" value="{{$petugas->nama_petugas}}"><br>
+                            <input type="text" name="nama_petugas" value="<?php echo e($petugas->nama_petugas); ?>"><br>
                             <label for="">Level</label>
                             <!-- <input type="text" name="level"><br> -->
                             <select name="level" >
@@ -37,7 +36,7 @@
                              <option value="admin">admin</option>
                              <option value="petugas">petugas</option>
                             </select>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit">Simpan</button>
                             </form>
                     </div>
                 </div>
@@ -47,6 +46,5 @@
 </body>
 </html>
 
-@endsection
-
-
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\PROJEK-ZACKY\appSpp\resources\views/petugas/edit.blade.php ENDPATH**/ ?>

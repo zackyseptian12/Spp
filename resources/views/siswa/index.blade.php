@@ -10,7 +10,7 @@
 </head>
 <body>
  
-    <a href="{{route('createsiswa')}}" >Tambah Siswa</a>
+    <a href="{{route('createsiswa')}}" class="btn btn-success my-3" >Tambah Siswa</a>
 
     <table border="1" align="center">
         
@@ -35,10 +35,10 @@
                 <td>{{$siswa->id_spp}}</td>
                 <td>
                     <form action="{{route('deletesiswa', $siswa->id)}}" method="POST">
-                        <a href="{{route('editsiswa',$siswa->id)}}">Edit</a>
+                        <a href="{{route('editsiswa',$siswa->id)}}" class="btn btn-primary">Edit</a>
                         @csrf
                     @method('DELETE')
-                    <button type="submit">delete</button>
+                    <button type="submit" class="btn btn-danger">delete</button>
 
                     </form>
                 </td>

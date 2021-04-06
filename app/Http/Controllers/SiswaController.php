@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\Kelas;
+use App\Models\User;
 class SiswaController extends Controller
 {
     public function index()
@@ -18,6 +19,8 @@ class SiswaController extends Controller
     {
         $kelas = Kelas::pluck('nama_kelas','id');
         $spp = Spp::pluck('nominal','id');
+
+        
         return view('siswa.create',compact('kelas','spp'));
     }
 
@@ -32,13 +35,32 @@ class SiswaController extends Controller
         'no_hp'=>$request->no_hp,
         'id_spp'=>$request->id_spp
       ]);
+
+      $email = $request->nis.'@siswa.com';
+      User::create([
+        // 'id' => $request->id,
+        'nio' => $request->nis,
+        'name' => $request->nama,
+        'email' => $email,
+        'username' => $request ->nama,
+        'password' => bcrypt($request->nis),
+        'role' => 'siswa',
+        
+      
+        ]);
      return redirect()->route('indexsiswa');
     }
 
     public function edit($id)
     {
       $siswa = Siswa::find($id);
-      return view('siswa.edit',compact('siswa'));
+      // $kelas = Kelas::get()->all();
+      // $spp = Spp::get()->all();
+
+      $kelas = Kelas::pluck('nama_kelas', 'id');
+      $spp = Spp::pluck('nominal', 'id');
+      // dd($spp);
+      return view('siswa.edit',compact('siswa','kelas','spp'));
     }
 
     public function update(Request $request,$id)

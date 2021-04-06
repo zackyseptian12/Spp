@@ -11,6 +11,7 @@ use App\Models\Pembayaran_view;
 use Carbon\Carbon;
 
 use App\Models\Siswa;
+use App\Models\Siswa_view;
 use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
@@ -20,6 +21,7 @@ class PembayaranController extends Controller
         $petugas = Petugas::all();
         $pembayaran = Pembayaran::all();
         $pembayaran_view = Pembayaran_view::all();
+        $view_siswa = Siswa_view::all();
         return view('pembayaran.index', compact('pembayaran','petugas','pembayaran_view'));
 
     }
@@ -37,14 +39,15 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-
-
+        
        $siswa = Siswa::where('nisn','=',$request->nisn)->first();
-        $spp = Spp::where('id','=',$siswa->id_spp)->first();
+        $spp = Spp::where('id','=',$siswa->id_spp)->first(); 
+        // $cekBulan = Pembayaran::where('bulan_bayar','=',$request->bulan_bayar)->where('nisn', $request->nisn)->where('tahun_bayar', '=', $request->tahun_bayar)->first();
 
-        if ($siswa->exists() == false) :
-            return back()->with('error', 'Nama dengan NISN tersebut tidak ada');
-            endif;
+        // if($cekBulan){
+        // return back()->with('Ok','Mohon Maaf, Bulan Sudah Dibayar');
+        // }
+         
         if($request->jumlah_bayar < $spp->nominal){
             return back()->with('error','Uangnya Kurang');
         } else {
@@ -59,9 +62,28 @@ class PembayaranController extends Controller
             'id_spp'=>$spp->id,
             'jumlah_bayar'=>$request->jumlah_bayar,
         ]);
-        return redirect()->route('indexpembayaran');
+        $kembalian = $request->jumlah_bayar - $spp->nominal;
+            return redirect('/pembayaran')->with('success', 'kembalian anda ' . $kembalian);
         }
     }
+
+    public function getDataSpp($nisn)
+{
+        $siswa = Siswa::where('nisn', $nisn)->first();
+        $view_siswa = Siswa_view::where('nisn', $nisn)->get();
+        $spp = Spp::find($siswa->id_spp);
+        $pembayaran = Pembayaran::where('nisn', $nisn)->get();
+        $indx = array_key_last(end($pembayaran));
+        $urutan = array_key_last(end($view_siswa));
+        $data = [
+                'harga' => $pembayaran[$indx],
+                'siswa' => $siswa[$indx],
+                'kelas' => Kelas::find($siswa->id_kelas),
+                'akhir' => $pembayaran,
+                'nominal' => $view_siswa[$urutan],
+        ];
+return response()->json($data);
+}
 
     public function delete($id)
     {
@@ -82,4 +104,8 @@ class PembayaranController extends Controller
        $request = Pembayaran::find($id)->update($request->all());
        return redirect()->route('indexpembayaran');
     }
+    public function show(Pembayaran_view $pembayaran)
+        {
+        return view('pembayaran.show', compact('pembayaran'));
+            }
 }

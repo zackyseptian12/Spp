@@ -2,10 +2,10 @@
 
 namespace App\Exports;
 
-use App\Models\Pembayaran_view;
+use App\Pembayaran_view;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class Pembayaran_viewExport implements FromCollection
+class PembayaranExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection

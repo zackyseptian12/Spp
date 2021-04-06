@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{route('createkelas')}}"> Tambah kelas</a>
+    <a href="{{route('createkelas')}}" class="btn btn-success my-3"> Tambah kelas</a>
 
     <table border="1" align="center">
         <tr>
@@ -25,11 +25,11 @@
                 <td>{{$kelas->major}}</td>
                 <td>
                     <form action="{{route('deletkelas', $kelas->id)}}" method="POST">
-                        <a href="{{route('editkelas',$kelas->id)}}">Edit</a>
+                        <a href="{{route('editkelas',$kelas->id)}}" class="btn btn-primary">Edit</a>
                         @csrf
                         @method('DELETE')
 
-                       <button type="submit">Delete</button>
+                       <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>

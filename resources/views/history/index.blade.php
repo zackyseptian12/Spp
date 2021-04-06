@@ -9,8 +9,27 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{route('createpembayaran')}}">Tambah Pembayaran</a>
+    <div class="card">
+        <div class="card-body">
+        <form action="{{url('/history/siswa/')}}" method="POST">
+        @csrf
+        
+        <div class="form-group">
+        <label for="nisn">NISN</label>
+        <input type="text" name="nisn" class="form-control" placeholder="Masukan nisn" required>
+        </div>
+        
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary">Cari</button>
+        <a href="{{url('/history')}}" class="btn btn-light">Reset</a>
+        {{-- <a href="{{route('export_excel')}}" class="btn btn-success">Download Excel</a> --}}
+        </div>
+        </form>
+        </div>
+        </div>
+    {{-- <a href="{{route('createpembayaran')}}">Tambah Pembayaran</a> --}}
 
+    <a href="/history/export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
     <table border="1" align="center">
           <tr>
                <td>ID_pembayarn</td>

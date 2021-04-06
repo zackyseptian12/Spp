@@ -1,21 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 
     @if(Session::get('error'))
-        <div class="div">
+        <div class="alert alert-success">
             {{ session()->get('error')}}
         </div>
     @endif
+
+        {{-- @if (Session::get('Ok'))
+    <div class="alert alert-danger">
+    <p>{{ session()->get('Ok')}}</p>
+    </div>
+    @endif --}}
 
     <div class="container">
         <div class="row justify-content-center">
@@ -26,7 +23,7 @@
                     <div class="card-body">
                         <form action="{{route('storepembayaran')}}" method="POST">
                             @csrf 
-                            <a href="{{route('indexpembayaran')}}">Kembali</a><br>
+                            <a href="{{route('indexpembayaran')}}" class="btn btn-primary my-3">Kembali</a><br>
                             {{-- <label for="">ID Pembayaran</label>
                             <input type="text" name="id_pembayaran"><br> --}}
                             {{-- <label for="">Petugas</label>
@@ -38,19 +35,35 @@
                                 @endforeach --}}
                                 {{-- <input type="text" name="id_petugas"value="{{auth()->user()->name}}" readonly ><br> --}}
                             {{-- </select><br> --}}
+                            {{-- <strong>Terakhir Pembayaran:</strong><br>
+                                {{-- <label for="">Terakhir pembayaran</label> --}}
+                                
+                               
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Terakhir Bayar</label>
+                                    <input type="email" class="form-control" id="bulan" placeholder="" readonly>
+                                </div>
+                                {{-- <label for="exampleDataList" class="form-label">NISN</label>
+                                    <input class="form-control" name="nisn" list="datalistOptions" id="nisn" placeholder="Type to search...">
+                                        <datalist id="datalistOptions">
+                                            @foreach ($siswa as $id=> $siswa)
+                                        <option value="{{$siswa->nisn}}">{{$siswa->nisn.'-'.$siswa->nama.'-'.$siswa->nominal}}</option>
+                                    @endforeach
+                                        </datalist><br> --}}
                             <label for="">NISN</label>
-                                {{-- <select name="nisn" >
+                                <select name="nisn" id="nisn" onchange="getData()" class="js-example-basic-single" >
                                     <option value="">-- PILIH NISN --</option>
                                     @foreach ($siswa as $id=> $siswa)
-                                        <option value="{{$siswa->nisn}}">{{$siswa->nisn}}</option>
+                                        <option value="{{$siswa->nisn}}" data-nominal="{{$siswa->nominal}}">{{$siswa->nisn.'-'.$siswa->nama.'-'.$siswa->nominal}}</option>
                                     @endforeach
-                                </select>   --}}
-                            <input type="text" name="nisn"><br>
+                                </select> <br>
+                                <label for="">Nominal</label>
+                                <input type="text" name="nominal" id="nominal" readonly>
+                            {{-- <input type="text" name="nisn"><br> --}}
                             {{-- <label for="">Tanggal Bayar</label>
                             <input type="date" name="tgl_bayar"><br> --}}
                             <label for="">Bulan Bayar</label>
                                 <select name="bulan_bayar">
-                                    <option>- pilih bulan -</option>
                                     <option value="January">January</option>
                                     <option value="Febuary">Febuary</option>
                                     <option value="March">March</option>
@@ -103,19 +116,28 @@
                                
                                 <input type="text" name="jumlah_bayar" ><br>     
                                       
-                                <button type="submit">Simpan</button>
+                                <button type="submit" class="btn btn-success my-3">Simpan</button>
                             </form>
-                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{{-- <script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script> --}}
 
-   
-</body>
-</html>
-
-
-
+<script>
+    jQuery(document).ready(function(){
+    jQuery('select').change(function(){
+    let nominal = jQuery(this).find(':selected').data('nominal');
+    
+    if(!isNaN(nominal)){
+    jQuery('#nominal').val(nominal)
+    }
+    })
+    });
+    </script>
 @endsection

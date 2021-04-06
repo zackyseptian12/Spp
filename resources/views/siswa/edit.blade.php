@@ -18,7 +18,7 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
     
                     <div class="card-body">
-                        <a href="{{route('indexsiswa')}}">Kembali</a>
+                        <a href="{{route('indexsiswa')}}" class="btn btn-success">Kembali</a><br>
                         <form action="{{route('updatesiswa', $siswa->id)}}" method="POST">
                         @csrf
                         @method('PUT')
@@ -29,14 +29,25 @@
                             <label for="">nama</label>
                             <input type="text" name="nama"value="{{$siswa->nama}}"><br>
                             <label for="">id_kelas</label>
-                            <input type="text" name="id_kelas"value="{{$siswa->id_kelas}}"><br>
+                            <select name="id_kelas" id="">
+                                 <option value="">Kelas</option>
+                                 @foreach ($kelas as $id => $data)
+                                 <option value="{{$id}}" @if ($id == $siswa->id_kelas) selected @endif>{{$data}}</option>
+                                 @endforeach
+                            </select><br>
+                            {{-- <input type="text" name="id_kelas"value="{{$siswa->id_kelas}}"><br> --}}
                             <label for="">alamat</label>
                             <input type="text" name="alamat"value="{{$siswa->alamat}}"><br>
                             <label for="">no_hp</label>
                             <input type="text" name="no_hp"value="{{$siswa->no_hp}}"><br>
                             <label for="">id_spp</label>
-                            <input type="text" name="nama"value="{{$siswa->id_spp}}"><br>
-                            <button type="submit">Simpan</button>
+                            <select name="id_spp" id="">
+                                <option value="">ID SPP</option>
+                                @foreach ($spp as $id => $data)
+                                <option value="{{$id}}" @if ($id == $siswa->id_spp) selected @endif>{{$data}}</option>
+                            @endforeach
+                            </select><br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>
                 </div>

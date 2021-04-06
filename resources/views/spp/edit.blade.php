@@ -21,13 +21,14 @@
                         <form action="{{route('updatespp', $spp->id)}}" method="POST">
                             @csrf
                             @method('PUT')
+                            <a href="{{route('indexspp')}}" class="btn btn-success">Kembali</a><br>
                             {{-- <label for="id_spp">ID_spp</label>\
                                 <input type="" name="id_spp" value="{{$spp->id_spp}}"><br> --}}
                                 <label for="">Tahun</label>
-                                <input type="year" name="tahun" value="{{$spp->tahun}}"><br>
+                                <input type="date" name="tahun" value="{{$spp->tahun}}"><br>
                                 <label for="">nominal</label>
                                 <input type="integer" name="nominal"value="{{$spp->nominal}}"><br>
-                                <button type="submit">Simpan</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </form>   
                     </div>
                 </div>

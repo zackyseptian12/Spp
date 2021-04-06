@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{route('createpetugas')}}" class="">Tambah Petugas</a>
+    <a href="{{route('createpetugas')}}" class="btn btn-success my-3">Tambah Petugas</a>
 
     <table border="1" align="center">
         <div class="container">
@@ -30,11 +30,11 @@
              <td>{{$petugas->level}}</td>
              <td>
                 <form action="{{route('deletepetugas', $petugas->id)}}" method="POST">
-                <a href="{{route('editpetugas', $petugas->id)}}">Edit</a>
+                <a href="{{route('editpetugas', $petugas->id)}}" class="btn btn-primary">Edit</a>
 
                 @csrf
                 @method('DELETE')
-                <button type="submit">DELETE</button>
+                <button type="submit" class="btn btn-danger">DELETE</button>
                 </form>
              </td>
          </tr>

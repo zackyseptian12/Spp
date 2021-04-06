@@ -13,6 +13,7 @@ class Siswa extends Model
        'nama',
        'id_kelas',
        'alamat',
+    //    'email',
        'no_hp',
        'id_spp',
    ]);

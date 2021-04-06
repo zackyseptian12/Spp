@@ -20,6 +20,7 @@ class CreateSiswaTable extends Migration
             $table->string('nama');
             $table->string('id_kelas');
             $table->string('alamat');
+            $table->string('email');
             $table->string('no_hp');
             $table->string('id_spp');
             $table->timestamps();

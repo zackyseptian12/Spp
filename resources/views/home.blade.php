@@ -15,11 +15,11 @@
                     @endif
                      
                     {{ __('You are logged in!') }} --}}
-                    <a href="{{route('indexsiswa')}}">Siswa</a><br>
-                    <a href="{{route('indexspp')}}">SPP</a><br>
-                    <a href="{{route('indexkelas')}}">Kelas</a><br>
-                    <a href="{{route('indexpetugas')}}">Petugas</a><br>
-                    <a href="{{route('indexpembayaran')}}">Pembayaran</a><br>
+                        {{-- <a href="{{route('indexsiswa')}}">Siswa</a><br>
+                        <a href="{{route('indexspp')}}">SPP</a><br>
+                        <a href="{{route('indexkelas')}}">Kelas</a><br>
+                        <a href="{{route('indexpetugas')}}">Petugas</a><br>
+                        <a href="{{route('indexpembayaran')}}">Pembayaran</a><br> --}}
                 </div>
             </div>
         </div>

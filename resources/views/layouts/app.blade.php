@@ -26,11 +26,50 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                {{-- @if(Auth::user()->role =='1')
+
+                <a class="navbar-brand" href="{{ url('/siswa') }}">
+                   Siswa
+                </a>
+                <a class="navbar-brand" href="{{ url('/spp') }}">
+                   Spp
+                </a>
+                <a class="navbar-brand" href="{{ url('/petugas') }}">
+                   Petugas
+                </a>
+                <a class="navbar-brand" href="{{ url('/kelas') }}">
+                   Kelas
+                </a>
+                <a class="navbar-brand" href="{{ url('/pembayaran') }}">
+                   pembayaran
+                </a>
+                <a class="navbar-brand" href="{{ url('/history') }}">
+                    History
+                 </a>
+
+                 @elseif(Auth::user()->role =='2')
+                 <a class="navbar-brand" href="{{ url('/history') }}">
+                    History
+                 </a>
+                 @elseif(Auth::user()->role =='siswa')
+                 <a class="navbar-brand" href="{{ url('/historySiswa/{id}') }}">
+                    History siswa
+                 </a>
+                 @endif --}}
+                {{-- @if(Auth::user()->role =='2')
+                 <a class="navbar-brand" href="{{ url('/history') }}">
+                    History
+                 </a> --}}
+                 {{-- @if(Auth::user()->role =='siswa')
+                 <a class="navbar-brand" href="{{ url('/historySiswa') }}">
+                    History siswa
+                 </a>
+                 @endif --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 

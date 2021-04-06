@@ -1,3 +1,5 @@
+
+
 @extends('layouts.admin')
 
 @section('content')
@@ -20,7 +22,7 @@
                     <div class="card-body">
                         <form action="{{route('storepetugas')}}" method="POST">
                             @csrf
-                            <a href="{{route('indexpetugas')}}">Kembali</a><br>
+                            <a href="{{route('indexpetugas')}}" class="btn btn-success">Kembali</a><br>
                             {{-- <label for="">ID_Petugas</label>
                             <input type="text" name="id_petugas"><br> --}}
                             <label for="">Username</label>
@@ -36,7 +38,7 @@
                              <option value="admin">admin</option>
                              <option value="petugas">petugas</option>
                             </select>
-                            <button type="submit">Simpan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                             </form>
                     </div>
                 </div>

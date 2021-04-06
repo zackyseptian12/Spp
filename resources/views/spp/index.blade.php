@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{route('tambahspp')}}">Tambah Spp</a>
+    <a href="{{route('tambahspp')}}" class="btn btn-success my-3">Tambah Spp</a>
 
     <table border="1" align="center">
         <tr>
@@ -27,8 +27,8 @@
             <form action="{{route('deletspp',$spp->id )}}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit">delet</button>
-                <a href="{{route('editspp', $spp->id)}}">Edit</a></td></form>
+                <button type="submit" class="btn btn-success my-3">delet</button>
+                <a href="{{route('editspp', $spp->id)}}" class="btn btn-danger my-3">Edit</a></td></form>
 
         </tr>
         @endforeach

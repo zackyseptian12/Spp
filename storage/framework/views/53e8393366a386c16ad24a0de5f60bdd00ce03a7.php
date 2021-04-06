@@ -1,6 +1,6 @@
-@extends('layouts.admin')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +16,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Tambah Kelas') }}</div>
+                    <div class="card-header"><?php echo e(__('Tambah Kelas')); ?></div>
     
                     <div class="card-body">
-                        <form action="{{route('storekelas')}}" method="POST">
-                            @csrf
-                        {{-- <label for="">ID_kelas</label>
-                        <input type="text" name="id_kelas"><br> --}}
-                        <a href="{{route('indexkelas')}}" class="btn btn-success">Kembali</a><br>
+                        <form action="<?php echo e(route('storekelas')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                        
+                        <a href="<?php echo e(route('indexkelas')); ?>" class="btn btn-success">Kembali</a><br>
                         <label for="">Nama Kelas</label>
                         <input type="text" name="nama_kelas"><br>
                         <label for="">Major</label>
@@ -42,4 +41,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\PROJEK-ZACKY\appSpp\resources\views/kelas/create.blade.php ENDPATH**/ ?>

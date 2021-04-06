@@ -1,12 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\SppController as SP;
 use App\http\Controllers\KelasController as KC;
 use App\http\Controllers\SiswaController as SI;
 use App\http\Controllers\PetugasController as PC;
 use App\http\Controllers\PembayaranController as PE;
 use App\Http\Controllers\HistoriController as HC;
+use App\Http\Controllers\pembayaranSiswaController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,5 +65,12 @@ Route::post('pembayaran/store', [PE::class, 'store'])->name('storepembayaran');
 Route::delete('pembayaran/delete/{id}', [PE::class, 'delete'])->name('deletepembayaran');
 Route::get('pembayaran/edit/{id}', [PE::class, 'edit'])->name('editpembayaran');
 Route::put('pembayaran/{id}/update', [PE::class, 'update'])->name('updatepembayaran');
+Route::get('pembayaran/get-data/{nisn}', [PE::class, 'getDataSpp']);
+Route::get('/pembayaran/show/{pembayaran}', [PE::class, 'show'])->name('pembayaran.show');
+
 
 Route::get('history', [HC::class, 'index'])->name('indexhistory');
+Route::get('history/export_excel', [HC::class, 'export_excel']);
+Route::get('history/list', [HC::class, 'getStudents'])->name('students.list');
+Route::post('history/siswa/', [HC::class, 'findStudent']);
+Route::get('historySiswa/', [pembayaranSiswaController::class, 'index'])->name('historySiswa');

@@ -1,6 +1,6 @@
-@extends('layouts.admin')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,21 +16,20 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header"><?php echo e(__('Dashboard')); ?></div>
     
                     <div class="card-body">
-                        <form action="{{route('updatepembayaran', $pembayaran->id)}}" method="POST">
-                            @csrf 
-                            @method('PUT')
-                            <a href="{{route('indexpembayaran')}}" class="btn btn-success">Kembali</a>
-                            {{-- <label for="">ID Pembayaran</label>
-                            <input type="text" name="id_pembayaran" value="{{$pembayaran->id_pembayaran}}"><br> --}}
+                        <form action="<?php echo e(route('updatepembayaran', $pembayaran->id)); ?>" method="POST">
+                            <?php echo csrf_field(); ?> 
+                            <?php echo method_field('PUT'); ?>
+                            <a href="<?php echo e(route('indexpembayaran')); ?>" class="btn btn-success">Kembali</a>
+                            
                             <label for="">ID Petugas</label>
-                            <input type="text" name="id_petugas" value="{{$pembayaran->id_petugas}}"><br>
+                            <input type="text" name="id_petugas" value="<?php echo e($pembayaran->id_petugas); ?>"><br>
                             <label for="">NISN</label>
-                            <input type="text" name="nisn" value="{{$pembayaran->nisn}}"><br>
+                            <input type="text" name="nisn" value="<?php echo e($pembayaran->nisn); ?>"><br>
                             <label for="">Tanggal Bayar</label>
-                            <input type="date" name="tgl_bayar" value="{{$pembayaran->tgl_bayar}}"><br>
+                            <input type="date" name="tgl_bayar" value="<?php echo e($pembayaran->tgl_bayar); ?>"><br>
                             <label for="">Bulan Bayar</label>
                                 <select name="bulan_bayar">
                                     <option >- pilih bulan -</option>
@@ -74,9 +73,9 @@
                                     <option value="2000">2000</option>
                                 </select><br>
                                 <label for="">ID Spp</label>
-                                <input type="text" name="id_spp" value="{{$pembayaran->id_spp}}"><br>
+                                <input type="text" name="id_spp" value="<?php echo e($pembayaran->id_spp); ?>"><br>
                                 <label for="">Jumlah Bayar</label>
-                                <input type="text" name="jumlah_bayar" value="{{$pembayaran->jumlah_bayar}}"><br>
+                                <input type="text" name="jumlah_bayar" value="<?php echo e($pembayaran->jumlah_bayar); ?>"><br>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </form>
                     </div>
@@ -89,4 +88,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\PROJEK-ZACKY\appSpp\resources\views/pembayaran/edit.blade.php ENDPATH**/ ?>

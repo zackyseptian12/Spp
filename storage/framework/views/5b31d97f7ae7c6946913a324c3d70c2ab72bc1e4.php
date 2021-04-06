@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,19 +9,18 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{route('indexspp')}}">Kembali</a> <br>
+    <a href="<?php echo e(route('indexspp')); ?>">Kembali</a> <br>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Tambah Spp') }}</div> 
+                    <div class="card-header"><?php echo e(__('Tambah Spp')); ?></div> 
                     <div class="card-body">
-                        <form action="{{route('storespp')}}" method="POST">
+                        <form action="<?php echo e(route('storespp')); ?>" method="POST">
                            
-                            @csrf
-                            <a href="{{route('indexspp')}}" class="btn btn-success">Kembali</a> <br>
-                            {{-- <label for="id_spp">ID_spp</label>\
-                            <input type="" name="id_spp"><br> --}}
+                            <?php echo csrf_field(); ?>
+                            <a href="<?php echo e(route('indexspp')); ?>" class="btn btn-success">Kembali</a> <br>
+                            
                             <label for="">Tahun</label>
                             <input type="date" name="tahun"><br>
                             <label for="">nominal</label>
@@ -35,4 +34,6 @@
     </div>
 </body>
 </html>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\PROJEK-ZACKY\appSpp\resources\views/spp/create.blade.php ENDPATH**/ ?>
